@@ -1,0 +1,7 @@
+<launch>
+  <node ns="left" pkg="image_view" type="image_view" name="image_view" args="image:=/rovi/left/image_raw" />
+  <node ns="/rovi/left" pkg="rovi_qc" type="fft.py" name="fft" />
+  <node ns="right" pkg="image_view" type="image_view" name="image_view" args="image:=/rovi/right/image_raw" />
+  <node ns="/rovi/right" pkg="rovi_qc" type="fft.py" name="fft" />
+  <node ns="/rovi" pkg="rovi_qc" type="fft_logger.py" name="fft_logger" output="screen" />
+</launch>
