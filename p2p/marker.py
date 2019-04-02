@@ -75,6 +75,7 @@ def cb_image(rosimg):
         cv2.ellipse(imgc,e0,(0,170,255),4)
     pb_mk.publish(np2F(cen))
   pb_im.publish(bridge.cv2_to_imgmsg(imgc,"rgb8"))
+  rospy.sleep(0.3)
   sb_im=rospy.Subscriber('image_rect',Image,cb_image)    
 
 ###############################################################
