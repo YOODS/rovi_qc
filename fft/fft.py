@@ -7,6 +7,7 @@ import roslib
 import rospy
 from sensor_msgs.msg import Image
 from std_msgs.msg import String
+from std_msgs.msg import Int32
 from cv_bridge import CvBridge, CvBridgeError
 #import matplotlib.pyplot as plt
 
@@ -34,6 +35,12 @@ def hpf(img,thres):
 
 lpf=[]
 
+def pub_int(pb,val):
+  dat=Int32()
+  dat.data=int(val)
+  pb.publish(dat)
+  return val
+
 def cb_image(rosimg):
   global sb_im,lpf
   sb_im.unregister()
@@ -50,12 +57,16 @@ def cb_image(rosimg):
   lpf.append(v)
   if len(lpf)==10:
     report=String()
-    focus=int(np.mean(np.array(lpf)))
+    focus=int(np.mean(np.array(lpf))/100)
     iave=int(np.mean(im0))
     bave=int(np.mean(im0[np.where(im0<=iave)]))
     wave=int(np.mean(im0[np.where(im0>=iave)]))
     report.data='focus='+str(focus)+' brightness=('+str(iave)+','+str(bave)+','+str(wave)+')'
     pb_report.publish(report)
+    pub_int(pb_focus,focus)
+    pub_int(pb_iave,iave)
+    pub_int(pb_bave,bave)
+    pub_int(pb_wave,wave)
     lpf.pop(0)
   sb_im=rospy.Subscriber('image_raw',Image,cb_image)
 
@@ -66,7 +77,10 @@ if __name__ == "__main__":
   bridge=CvBridge()
   sb_im=rospy.Subscriber('image_raw',Image,cb_image)
   pb_report=rospy.Publisher('fft/report',String,queue_size=1)
-
+  pb_focus=rospy.Publisher('fft/focus',Int32,queue_size=1)
+  pb_iave=rospy.Publisher('fft/bright',Int32,queue_size=1)
+  pb_bave=rospy.Publisher('fft/black',Int32,queue_size=1)
+  pb_wave=rospy.Publisher('fft/white',Int32,queue_size=1)
   try:
     rospy.spin()
   except KeyboardInterrupt:

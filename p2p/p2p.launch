@@ -1,5 +1,5 @@
 <launch>
-  <rosparam command="load" file="p2p.yaml" />
+  <rosparam command="load" file="$(find rovi_qc)/p2p/p2p.yaml" />
   <node pkg="rviz" type="rviz" name="rviz" args="-d $(find rovi_qc)/p2p/p2p.rviz" />
   <node pkg="rovi_qc" ns="/rovi/left" type="marker.py" name="marker" />
   <node pkg="rovi_qc" ns="/rovi/right" type="marker.py" name="marker" />

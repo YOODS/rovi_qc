@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=RoVI(SXGA)
+Comment=
+Exec=rovirun.sh roslaunch rovi_qc fft.launch
+Icon=
+Terminal=true
+StartupNotify=false
+Name[ja_JP.eucJP]=FFT
