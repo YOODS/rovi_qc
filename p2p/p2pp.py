@@ -157,6 +157,13 @@ def cb_param(msg):
       Radius=a[key]/2
   return
 
+def cb_save(msg):
+  f=open('/tmp/'+str(Product_id)+'_p2p.csv','w')
+  f.write('points0,points1,sigma,distance\n')
+  for ln in Result:
+    f.write(str(int(ln[0]))+','+str(int(ln[1]))+','+str(ln[2])+','+str(ln[3])+'\n')
+  f.close()
+
 ###############################################################
 rospy.init_node('p2p',anonymous=True)
 pb_red=rospy.Publisher("/p2p/red",PointCloud,queue_size=1)
@@ -176,6 +183,7 @@ rospy.Subscriber("/rovi/left/marker/pos",numpy_msg(Floats),cb_posl)
 rospy.Subscriber("/rovi/right/marker/pos",numpy_msg(Floats),cb_posr)
 rospy.Subscriber("/p2p/param",String,cb_param)
 rospy.Subscriber("/p2p/abort",Bool,cb_abort)
+rospy.Subscriber("/p2p/save",Bool,cb_save)
 
 try:
   Qmat=np.asarray(rospy.get_param('/rovi/genpc/Q')).reshape((4,4))
