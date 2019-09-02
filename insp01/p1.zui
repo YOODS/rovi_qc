@@ -1,0 +1,5 @@
+"class":"Title",  "label":"Panelテスト"
+"class":"Number", "label":"カメラ露光時間(1000-30000us)","name":"/rovi/live/camera/ExposureTime"
+"class":"Number", "name":"/rovi/live/camera/SoftwareTriggerRate","label":"フレームレート(2-10)"
+"class":"Number", "name":"/rovi/pshift_genpc/projector/Mode","label":"プロジェクタモード"
+"class":"Pub",    "label":"3Dスキャン","name":"/rovi/X1","data":".data=True","button":"実行"

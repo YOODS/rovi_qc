@@ -1,0 +1,32 @@
+config:
+  dashboard:
+    altitude: '+0'
+    font:
+      size: 10
+    color:
+      background: "#00AAFF"
+      lit: "#FF7700"
+      unlit: "#000000"
+      mask: "#555555"
+    launch_ycam:
+      label: "カメラドライバ"
+      package: rovi
+      file: ycam3sxga.launch
+      confirm: True
+    launch_setup:
+      label: "セットアップ"
+      package: rovi_qc
+      file: p1.launch
+    launch_viewer:
+      label: "Viewer"
+      package: rovi_qc
+      file: v1.launch
+    launch_maxrate:
+      label: "最大パフォーマンス"
+      package: rovi_qc
+      file: maxrate.py
+    indicator_rovi:
+      label: "YCAM"
+      topic: /rovi/stat
+      type: std_msgs/Bool
+      timeout: 2
