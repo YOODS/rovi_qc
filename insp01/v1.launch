@@ -1,0 +1,7 @@
+<launch>
+  <node pkg="rviz" type="rviz" name="" />
+  <node pkg="rovi" type="floats2pc" name="" args="camera">
+    <remap from="floats" to="/rovi/ps_floats" />
+    <remap from="pc" to="/pc" />
+  </node>
+</launch>
