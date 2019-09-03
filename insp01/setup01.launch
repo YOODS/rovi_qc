@@ -1,0 +1,5 @@
+<launch>
+  <param name="/rovi/pshift_genpc/projector/Mode" type="int" value="1" />
+  <param name="/rovi/live/camera/SoftwareTriggerRate" type="int" value="4" />
+  <node pkg="rtk_tools" type="panel.py" name="" args="conf:=$(find rovi_qc)/insp01/setup.zui" />
+</launch>

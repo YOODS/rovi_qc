@@ -6,12 +6,13 @@ import cv2
 import numpy as np
 import roslib
 import rospy
-from rovi.msg import Floats
+from std_msgs.msg import String
 from rospy.numpy_msg import numpy_msg
+import base64
 
 def cb_ps(msg): #callback of ps_floats
   global cbtime,tamax,tamin,tacount
-  pc=np.reshape(msg.data,(-1,3))
+  pc=np.frombuffer(base64.b64decode(msg.data),dtype=np.float32).reshape((-1,3))
   tn=time.time()
   ta=tn-cbtime
   if tacount<5:
@@ -34,7 +35,7 @@ cbtime=time.time()
 tamax=0
 tamin=0
 tacount=0
-rospy.Subscriber("/rovi/ps_floats",numpy_msg(Floats),cb_ps)
+rospy.Subscriber("/rovi/ps_base64",String,cb_ps)
 
 Popen("rostopic pub -r10 /rovi/X1 std_msgs/Bool True".strip().split(" ") )
 

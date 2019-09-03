@@ -1,5 +1,5 @@
 <launch>
-  <rosparam command="load" file="$(find rovi_qc)/insp1/config.yaml" />
+  <rosparam command="load" file="$(find rovi_qc)/insp01/config.yaml" />
   <node pkg="rtk_tools" type="dashboard.py" name="" output="screen">
   </node>
 </launch>

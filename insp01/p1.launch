@@ -1,3 +1,0 @@
-<launch>
-  <node pkg="rtk_tools" type="panel.py" name="" args="conf:=$(find rovi_qc)/insp01/panel.zui" />
-</launch>

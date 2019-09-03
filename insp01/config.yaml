@@ -11,20 +11,24 @@ config:
     launch_ycam:
       label: "カメラドライバ"
       package: rovi
-      file: ycam3sxga.launch
+      file: ycam3sxga_m.launch
       confirm: True
     launch_setup:
-      label: "セットアップ"
+      label: "設定"
       package: rovi_qc
-      file: p1.launch
+      file: setup01.launch
     launch_viewer:
       label: "Viewer"
       package: rovi_qc
-      file: v1.launch
+      file: view01.launch
     launch_maxrate:
-      label: "最大パフォーマンス"
+      label: "最大パフォーマンス(Floats)"
       package: rovi_qc
       file: maxrate.py
+    launch_maxB64:
+      label: "最大パフォーマンス(Base64)"
+      package: rovi_qc
+      file: maxB64.py
     indicator_rovi:
       label: "YCAM"
       topic: /rovi/stat

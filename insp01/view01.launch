@@ -1,0 +1,7 @@
+<launch>
+  <node pkg="rviz" type="rviz" name="" args="-d $(find rovi_qc)/insp01/config.rviz" />
+  <node pkg="rovi" type="floats2pc" name="" args="camera">
+    <remap from="base64" to="/rovi/ps_base64" />
+    <remap from="pc" to="/pc" />
+  </node>
+</launch>
