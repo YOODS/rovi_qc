@@ -35,13 +35,17 @@ cbtime=time.time()
 tamax=0
 tamin=0
 tacount=0
-rospy.Subscriber("/rovi/ps_base64",String,cb_ps)
+sub=rospy.Subscriber("/rovi/ps_base64",String,cb_ps)
 
-Popen("rostopic pub -r10 /rovi/X1 std_msgs/Bool True".strip().split(" ") )
+proc=Popen("rostopic pub -r1 /rovi/X1 std_msgs/Bool True".strip().split(" ") )
 
 while not rospy.is_shutdown():
   if time.time()-cbtime>5: break
   rospy.sleep(1)
 
 print "cb_ps timeout"
+proc.terminate()
+sub.unregister()
+rospy.spin()
+
 
