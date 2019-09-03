@@ -37,7 +37,7 @@ tamin=0
 tacount=0
 sub=rospy.Subscriber("/rovi/ps_base64",String,cb_ps)
 
-proc=Popen("rostopic pub -r1 /rovi/X1 std_msgs/Bool True".strip().split(" ") )
+proc=Popen("rostopic pub -r10 /rovi/X1 std_msgs/Bool True".strip().split(" ") )
 
 while not rospy.is_shutdown():
   if time.time()-cbtime>5: break
