@@ -53,17 +53,7 @@ while not rospy.is_shutdown():
   if ycam is False:
     print "YCAM not normal"
     break
-  if len(pcarray)>10:
-    pcmin=min(pcarray[:-1])
-    pcmax=max(pcarray[:-1])
-    pcave=sum(pcarray[:-1])/len(pcarray[:-1])
-    if pcmax>pcave*1.2: continue
-    if pcmin<pcave*0.8: continue
-    if pcarray[-1]<pcave*0.5:
-      print "Too few points"
-      break
-    pcarray.pop(0)
-rospy.sleep(1)
+  rospy.sleep(1)
 
 proc.terminate()
 rospy.spin()
